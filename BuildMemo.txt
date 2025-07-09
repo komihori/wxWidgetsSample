@@ -1,0 +1,2 @@
+cmake -G "Unix Makefiles" -DwxWidgets_CONFIG_EXECUTABLE=/usr/local/bin/wx-config .
+make
