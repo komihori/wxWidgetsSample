@@ -10,26 +10,19 @@ MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Sample App") {
 
     panel = new wxPanel(this, wxID_ANY);
 
-    vbox  = new wxBoxSizer(wxVERTICAL);
-    hbox = new wxBoxSizer(wxHORIZONTAL);
-    hbox2 = new wxBoxSizer(wxHORIZONTAL);
-    hbox3 = new wxBoxSizer(wxHORIZONTAL);
-    panel->SetSizer(vbox);
+    wxBoxSizer* vBoxSizer = new wxBoxSizer(wxVERTICAL);
 
     staticText1 = new wxStaticText(panel, wxID_ANY, "HexText");
     tc = new wxTextCtrl(panel, wxID_ANY);
 
     button = new wxButton(panel, wxID_ANY, "Button");
     button->Bind(wxEVT_BUTTON, &MyFrame::OnClick, this);
+
+    vBoxSizer->Add(staticText1);
+    vBoxSizer->Add(tc);
+    vBoxSizer->Add(button);
     
-
-    hbox->Add(staticText1, 0, wxLEFT);
-    hbox->Add(tc, 1);
-    vbox->Add(hbox, 0, wxALIGN_LEFT, 10);
-    hbox2->Add(button, 1, wxALIGN_LEFT, 10);
-    vbox->Add(hbox2, 1, wxALIGN_LEFT, 10);
-
-    vbox->Add(-1, 10);
+    panel->SetSizer(vBoxSizer);
 
     // イベントハンドラーの登録.
     // 自身のメンバー関数を登録する場合.
@@ -43,8 +36,9 @@ MyFrame::~MyFrame() {
 }
 
 void MyFrame::OnClick(wxCommandEvent &e){
-    wxString tcText = tc->GetValue().ToStdString();
-    staticText1->SetLabel(tcText);
+    //wxString tcText = tc->GetValue().ToStdString();
+    //staticText1->SetLabel(tcText);
+    tc->SetValue("");
 }
 
 // wxEVT_CLOSE_WINDOW はウィンドウが閉じられようとしていた場合に呼ばれる.

@@ -12,10 +12,7 @@ private:
     wxMenuBar* menuBar;
     wxMenu* menuFile;
     wxPanel* panel;
-    wxBoxSizer* vbox;
-    wxBoxSizer* hbox;
-    wxBoxSizer* hbox2;
-    wxBoxSizer* hbox3;
+
     wxStaticText* staticText1;
     wxTextCtrl* tc;
     wxButton* button;
