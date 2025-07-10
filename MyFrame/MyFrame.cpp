@@ -13,16 +13,17 @@ MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Sample App") {
     vbox  = new wxBoxSizer(wxVERTICAL);
     hbox = new wxBoxSizer(wxHORIZONTAL);
     hbox2 = new wxBoxSizer(wxHORIZONTAL);
+    hbox3 = new wxBoxSizer(wxHORIZONTAL);
     panel->SetSizer(vbox);
 
-    st1 = new wxStaticText(panel, wxID_ANY, "StaticText");
+    staticText1 = new wxStaticText(panel, wxID_ANY, "HexText");
     tc = new wxTextCtrl(panel, wxID_ANY);
 
     button = new wxButton(panel, wxID_ANY, "Button");
     button->Bind(wxEVT_BUTTON, &MyFrame::OnClick, this);
     
 
-    hbox->Add(st1, 0, wxLEFT);
+    hbox->Add(staticText1, 0, wxLEFT);
     hbox->Add(tc, 1);
     vbox->Add(hbox, 0, wxALIGN_LEFT, 10);
     hbox2->Add(button, 1, wxALIGN_LEFT, 10);
@@ -43,7 +44,7 @@ MyFrame::~MyFrame() {
 
 void MyFrame::OnClick(wxCommandEvent &e){
     wxString tcText = tc->GetValue().ToStdString();
-    st1->SetLabel(tcText);
+    staticText1->SetLabel(tcText);
 }
 
 // wxEVT_CLOSE_WINDOW はウィンドウが閉じられようとしていた場合に呼ばれる.

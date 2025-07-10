@@ -15,7 +15,8 @@ private:
     wxBoxSizer* vbox;
     wxBoxSizer* hbox;
     wxBoxSizer* hbox2;
-    wxStaticText* st1;
+    wxBoxSizer* hbox3;
+    wxStaticText* staticText1;
     wxTextCtrl* tc;
     wxButton* button;
 
