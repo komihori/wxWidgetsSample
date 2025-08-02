@@ -1,6 +1,6 @@
-#include "MyFrame.hpp"
+#include "../include/MyFrame.hpp"
 
-MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Sample App") {
+MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Sample App")/*, timer(this)*/ {
     // メインメニューの作成
     menuBar = new wxMenuBar;
     menuFile = new wxMenu;
@@ -8,6 +8,8 @@ MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Sample App") {
     menuBar->Append(menuFile, "File");
     SetMenuBar(menuBar);
 
+//	Bind(wxEVT_TIMER, &MyFrame::OnTimer, this, timer.GetId());
+//	timer.Start(10);
     panel = new wxPanel(this, wxID_ANY);
 
     wxBoxSizer* vBoxSizer = new wxBoxSizer(wxVERTICAL);
@@ -24,6 +26,8 @@ MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Sample App") {
     
     panel->SetSizer(vBoxSizer);
 
+	Connect(wxEVT_PAINT, wxPaintEventHandler(MyFrame::OnPaintLine));
+
     // イベントハンドラーの登録.
     // 自身のメンバー関数を登録する場合.
     Bind(wxEVT_CLOSE_WINDOW, &MyFrame::OnClose, this);
@@ -35,10 +39,24 @@ MyFrame::~MyFrame() {
 
 }
 
+//void MyFrame::OnTimer(wxTimerEvent &e){
+	
+//}
+
 void MyFrame::OnClick(wxCommandEvent &e){
-    //wxString tcText = tc->GetValue().ToStdString();
+    std::string tcText = tc->GetValue().ToStdString();
+	deltaY = std::stoi(tcText);
     //staticText1->SetLabel(tcText);
     tc->SetValue("");
+	Refresh();
+//	lineDC->DrawLine(20, 100, 380, 40);
+}
+
+void MyFrame::OnPaintLine(wxPaintEvent &e){
+	lineDC = new wxPaintDC(this);
+    lineDC->SetPen(wxPen(wxColour("yellow"),   1, wxSOLID));
+    lineDC->DrawLine(xPos, yPos, xPos + deltaX, yPos + deltaY);
+	//lineDC = dc;
 }
 
 // wxEVT_CLOSE_WINDOW はウィンドウが閉じられようとしていた場合に呼ばれる.

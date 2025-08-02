@@ -1,5 +1,5 @@
-#include "MyApp.hpp"
-#include "../MyFrame/MyFrame.hpp"
+#include "../include/MyApp.hpp"
+#include "../include/MyFrame.hpp"
 
 // アプリケーションの初期化処理。
 // 実質的な main 関数の代わりと思って良い。
